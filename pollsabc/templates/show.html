@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示投票内容</title>
+</head>
+<body>
+
+    <h1>{{ Ques.question_text }}</h1>
+    <br><br>
+
+    {% if myERROR %}
+        <p><strong>{{ myERROR }}</strong></p>
+    {% endif %}
+
+    <form action="{% url 'polls:showAction' Ques.id %}" method="post" >
+        {% csrf_token %}
+        {% for x in Chos %}
+            <input type="checkbox" name="checkboxs" value="{{ x.id }}">{{ x.choicetext }}
+        {% endfor %}
+        <input type="submit" value="提交">
+    </form>
+
+
+</body>
+</html>
